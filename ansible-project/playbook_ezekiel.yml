@@ -1,0 +1,11 @@
+---
+- name: Install docker
+  hosts: webservers
+  roles:
+   - docker
+
+- name: Login and pull image
+  hosts: webservers
+  roles:
+   - containers
+

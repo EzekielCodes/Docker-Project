@@ -1,0 +1,19 @@
+---
+# tasks file for roles/containers
+- name: Log into private registry and force re-authorization
+  docker_login:
+    registry: registry.gitlab.com
+    username: "{{ username }}"
+    password: "{{ password }}"
+    reauthorize: yes
+
+- name: pull container image
+  docker_image:
+    name: registry.gitlab.com/ikdoeict/toluwani.akindele/2122-iac_docker_project-akindele-toluwani-ezekiel
+    tag: flask
+    pull: yes
+
+- name: Create container
+  docker_container:
+   name: website
+   image: registry.gitlab.com/ikdoeict/toluwani.akindele/2122-iac_docker_project-akindele-toluwani-ezekiel:flask

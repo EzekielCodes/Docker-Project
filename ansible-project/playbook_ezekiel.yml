@@ -1,4 +1,10 @@
 ---
+
+- name: Update software
+  hosts: webservers
+  roles:
+   - common
+   
 - name: Install docker
   hosts: webservers
   roles:
@@ -8,4 +14,6 @@
   hosts: webservers
   roles:
    - containers
+
+
 

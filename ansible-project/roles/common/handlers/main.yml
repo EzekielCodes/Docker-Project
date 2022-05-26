@@ -1,0 +1,11 @@
+---
+# handlers file for Roles/common
+- name: restart_firewall_ubuntu
+  service:
+    name: ufw
+    state: restarted
+
+- name: restart_firewall_centos
+  service:
+    name: firewalld
+    state: restarted

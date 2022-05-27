@@ -9,11 +9,16 @@
 
 - name: pull container image
   docker_image:
-    name: registry.gitlab.com/ikdoeict/toluwani.akindele/2122-iac_docker_project-akindele-toluwani-ezekiel
+    name: registry.gitlab.com/ikdoeict/toluwani.akindele/2122-iac_docker_project-akindele-toluwani-ezekiel/site
     tag: flask
     pull: yes
 
 - name: Create container
   docker_container:
-   name: website
-   image: registry.gitlab.com/ikdoeict/toluwani.akindele/2122-iac_docker_project-akindele-toluwani-ezekiel:flask
+   name: sites
+   image: registry.gitlab.com/ikdoeict/toluwani.akindele/2122-iac_docker_project-akindele-toluwani-ezekiel/site:flask
+   state: started
+   ports:
+    - "80:8001"
+   env:
+    VALUE: Dit is  {{ inventory_hostname }}  met ip adres {{ ansible_host }}

@@ -22,6 +22,15 @@
     - restart_firewall_ubuntu
   when: ansible_facts['distribution'] == "Ubuntu"
 
+- name: Manage firewall to accept SSH on Ubuntu,443
+  ufw:
+    rule: allow
+    port: '443'
+    proto: tcp
+  notify:
+    - restart_firewall_ubuntu
+  when: ansible_facts['distribution'] == "Ubuntu"
+
 - name : Update packages for CentOS 
   yum:
     name: '*'
@@ -31,6 +40,15 @@
 - name: Manage firewall to accept SSH on CentOS, restart if necessary
   firewalld:
     port: 22/tcp
+    state: enabled
+    permanent: yes
+  notify:
+    - restart_firewall_centos
+  when: ansible_facts['distribution'] == "CentOS"
+
+- name: Manage firewall to accept SSH on CentOS, 443
+  firewalld:
+    port: 443/tcp
     state: enabled
     permanent: yes
   notify:

@@ -19,6 +19,6 @@
    image: registry.gitlab.com/ikdoeict/toluwani.akindele/2122-iac_docker_project-akindele-toluwani-ezekiel/site:flask
    state: started
    ports:
-    - "80:8001"
+    - "443:8001"
    env:
     VALUE: Dit is  {{ inventory_hostname }}  met ip adres {{ ansible_host }}

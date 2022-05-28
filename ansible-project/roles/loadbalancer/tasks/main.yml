@@ -1,0 +1,27 @@
+---
+# tasks file for roles/loadbalancer
+
+- name: Log into private registry and force re-authorization
+  docker_login:
+    registry: registry.gitlab.com
+    username: "{{ username }}"
+    password: "{{ password }}"
+    reauthorize: yes
+
+- name: pull haproxy  image
+  docker_image:
+    name: registry.gitlab.com/ikdoeict/toluwani.akindele/2122-iac_docker_project-akindele-toluwani-ezekiel/haproxycfg
+    tag: flask
+    pull: yes
+
+- name: start haproxy container on MGTHOST
+  docker_container:
+   name: haproxy_container
+   image: registry.gitlab.com/ikdoeict/toluwani.akindele/2122-iac_docker_project-akindele-toluwani-ezekiel/haproxycfg:flask
+   state: started
+   volumes:
+    - ./roles/loadbalancer/files/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:z 
+    - ./roles/loadbalancer/files/haproxy_key.pem:/usr/local/etc/certs/haproxy_key.pem:z 
+   network_mode: host
+   
+    

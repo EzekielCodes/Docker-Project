@@ -15,5 +15,9 @@
   roles:
    - containers
 
+- name: start haproxy (webservers wordt automatische toegekend)
+  hosts: controlnode1
+  roles:
+   - loadbalancer
 
 

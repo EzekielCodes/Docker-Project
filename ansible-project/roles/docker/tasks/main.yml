@@ -31,8 +31,22 @@
     state: latest
     update_cache: true
 
-- name: sudo allow docker
-  command: usermod -aG docker $USER
+#- name: sudo allow docker
+ # command: usermod -aG docker $USER
+
+- name: create docker group
+  become: true
+  group:
+    name: docker
+    state: present
+
+- name: add user to group 
+  become: true
+  user:
+    name: "{{ansible_user}}"
+    groups: docker
+    append: true
+
 
 
 

@@ -5,25 +5,25 @@
         hosts:
           controlnode1:
             ansible_host: 10.129.24.89
-        vars:
-          ansible_user: student
-          ansible_become: yes
-          ansible_connection: local
-          ansible_become_method: sudo
-          ansible_become_pass: student
-          ansible_python_interpreter: /bin/python3
+        #vars:
+          #ansible_user: student
+          #ansible_become: yes
+          #ansible_connection: local
+          #ansible_become_method: sudo
+          #ansible_become_pass: student
+          #ansible_python_interpreter: /bin/python3
       webservers:
         hosts:
           webnode1:
             ansible_host: 10.129.24.103
           webnode2:
             ansible_host: 10.129.24.90
-        vars:
-          ansible_user: student
-          ansible_become: yes
-          ansible_connection: ssh
-          ansible_become_method: sudo
-          ansible_become_pass: student
+        #vars:
+          #ansible_user: student
+          #ansible_become: yes
+          #ansible_connection: ssh
+          #ansible_become_method: sudo
+          #ansible_become_pass: student
     vars:
       ansible_become: yes
       ansible_connection: ssh

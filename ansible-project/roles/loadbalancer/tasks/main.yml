@@ -16,15 +16,22 @@
     tag: flask
     pull: yes
 
+- name: Edit haproxy.cfg and make changes
+  template:
+    src: haproxy.cfg
+    dest: ./roles/loadbalancer/files/haproxy.cfg
+    
+
 - name: start haproxy container on MGTHOST
   docker_container:
    name: haproxy_container
    image: registry.gitlab.com/ikdoeict/toluwani.akindele/2122-iac_docker_project-akindele-toluwani-ezekiel/haproxycfg:flask
    state: started
+   ports:
+    - "443:443"
    volumes:
     - ./roles/loadbalancer/files/haproxy_key.pem:/usr/local/etc/certs/haproxy_key.pem:z 
     - ./roles/loadbalancer/files/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:z   
-   ports:
-    - "443:443"
+  
    
     

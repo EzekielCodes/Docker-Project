@@ -21,4 +21,4 @@
    ports:
     - "443:8001"
    env:
-    VALUE: Dit is  {{ inventory_hostname }}  met ip adres {{ ansible_host }}
+    VALUE: Dit is  {{ ansible_hostname }}  met ip adres {{ ansible_host }}
